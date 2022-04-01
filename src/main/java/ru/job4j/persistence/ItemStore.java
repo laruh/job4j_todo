@@ -27,7 +27,7 @@ public class ItemStore {
         final Session session = sf.openSession();
         final Transaction tx = session.beginTransaction();
         try {
-            var rsl = session.createQuery("from ru.job4j.model.Item.class").list();
+            var rsl = session.createQuery("select i from Item i").list();
             tx.commit();
             return rsl;
         } catch (final Exception e) {
