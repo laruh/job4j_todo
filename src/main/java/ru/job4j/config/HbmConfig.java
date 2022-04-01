@@ -30,7 +30,7 @@ public class HbmConfig {
     private String driver;
 
     @Value("${spring.jpa.database-platform}")
-    private String hibernate;
+    private String dialect;
 
     @Bean
     public DataSource ds() {
@@ -43,8 +43,7 @@ public class HbmConfig {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(@Value("${hibernate.dialect}") String dialect,
-                                                  DataSource ds) {
+    public LocalSessionFactoryBean sessionFactory(DataSource ds) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(ds);
         sessionFactory.setPackagesToScan("ru.job4j.model");
