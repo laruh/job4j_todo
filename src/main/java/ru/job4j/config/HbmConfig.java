@@ -29,7 +29,7 @@ public class HbmConfig {
     @Value("${spring.datasource.driver-class-name}")
     private String driver;
 
-    @Value("${spring.jpa.database-platform}")
+    @Value("${hibernate.database-platform}")
     private String dialect;
 
     @Bean
