@@ -15,14 +15,14 @@ public class ItemStore {
         this.sf = sf;
     }
 
-    public Item save(Item item) {
+    public Item add(Item item) {
         try (Session session = sf.openSession()) {
             session.save(item);
             return item;
         }
     }
 
-    public List<Item> getAll() {
+    public List<Item> getALLItems() {
         try (Session session = sf.openSession()) {
             return session.createQuery("from ru.job4j.model.Item.class").list();
         }

@@ -17,18 +17,6 @@ public class Item {
     public Item() {
     }
 
-    public Item(int id, String description) {
-        this.id = id;
-        this.description = description;
-    }
-
-    public static Item of(int id, String description) {
-        Item item = new Item();
-        item.id = id;
-        item.description = description;
-        return item;
-    }
-
     public int getId() {
         return id;
     }
