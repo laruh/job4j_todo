@@ -24,9 +24,7 @@ public class ItemStore {
 
     public List<Item> getAll() {
         try (Session session = sf.openSession()) {
-            return session
-                    .createQuery("from ru.job4j.model.Item.class")
-                    .list();
+            return session.createQuery("from ru.job4j.model.Item.class").list();
         }
     }
 }

@@ -17,11 +17,23 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class HbmConfig {
 
+    @Value("${spring.datasource.url}")
+    private String url;
+
+    @Value("${spring.datasource.username}")
+    private String username;
+
+    @Value("${spring.datasource.password}")
+    private String password;
+
+    @Value("${spring.datasource.driver-class-name}")
+    private String driver;
+
+    @Value("${spring.jpa.database-platform}")
+    private String hibernate;
+
     @Bean
-    public DataSource ds(@Value("${jdbc.driver}") String driver,
-                         @Value("${jdbc.url}") String url,
-                         @Value("${jdbc.username}") String username,
-                         @Value("${jdbc.password}") String password) {
+    public DataSource ds() {
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName(driver);
         ds.setUrl(url);
