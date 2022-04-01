@@ -2,6 +2,7 @@ package ru.job4j.persistence;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import ru.job4j.model.Item;
 
@@ -23,8 +24,17 @@ public class ItemStore {
     }
 
     public List<Item> getALLItems() {
-        try (Session session = sf.openSession()) {
-            return session.createQuery("from ru.job4j.model.Item.class").list();
+        final Session session = sf.openSession();
+        final Transaction tx = session.beginTransaction();
+        try {
+            var rsl = session.createQuery("from ru.job4j.model.Item.class").list();
+            tx.commit();
+            return rsl;
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            session.close();
         }
     }
 }
