@@ -15,40 +15,50 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>ToDo список</title>
+    <title>ToDo list</title>
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">ToDo список</a>
+        <a class="navbar-brand" href="#">ToDo list</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Главная <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" th:href="@{/items}">Задачи</a>
-                <a class="nav-item nav-link" th:href="@{/addItem}">Задачи</a>
+                <a class="nav-item nav-link" th:href="@{/items}">All tasks</a>
+                <a class="nav-item nav-link" th:href="@{/showNew}">New</a>
+                <a class="nav-item nav-link" th:href="@{/showDone}">Done</a>
+                <a class="nav-item nav-link" th:href="@{/addItem}">Add task</a>
             </div>
         </div>
     </nav>
-    <div class="row">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#Id</th>
-                <th scope="col">Описание</th>
-                <th scope="col">Дата создания</th>
-                <th scope="col">Выполнено</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="item: ${items}">
-                <td th:text="${item.id}"></td>
-                <td th:text="${item.description}"></td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="row" th:each="item : ${items}">
+        <div class="col">
+            <div class="shadow card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-8">
+                            <h5 class="card-title">
+                                <a class="text-dark" th:href="@{|/descriptionItem/${item.id}|}" th:text="${item.name}"/>
+                            </h5>
+                            <p class="card-subtitle text-muted">
+                                Created
+                                <span th:text="${item.created}"/>
+                            </p>
+                        </div>
+                        <div class="col-6 col-md-4 text-right align-self-center">
+                            <span th:if="${!item.done}">
+                                <span class="badge badge-primary">In process</span>
+                            </span>
+                            <span th:if="${item.done}">
+                                <span class="badge badge-success">Done</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

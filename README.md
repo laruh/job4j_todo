@@ -1,17 +1,23 @@
 # job4j_todo
 
-## TODO список
+## TODO list
 
-Приложение имеет одну страницу со списком дел index.html.
-Если дело сделано, то его отмечают, как выполненное и оно исчезает из списка.
+The application has one main page with a to-do list of all tasks.
+If the task is done, then it is marked as completed. Then it disappears from the list on page newTasks.html.
 
-Используемые технологии: Spring Boot, Thymeleaf, HTML, CSS, Bootstrap, Hibernate
+Technologies used: Spring Boot, Thymeleaf, HTML, CSS, Bootstrap, Hibernate
 
-Описание:
-1. Одна таблица в базе данных item с полями id, description, created, done. Расположение /db/
-2. Веб приложение имеет одну страницу index.html.
-3. Вверху форма. Добавить новое задание. описание.
-4. Список всех заданий и галка выполнено или нет.
-5. Вверху добавить галку. показать все. если включена. то показывать все. если нет. то только те что не выполнены done = false.
-6. Данные сохраняются через hibernate.
-7. Для вида используется bootstrap.
+Description:
+1. There is one table in the item database with the fields: id, name, description, created, done. Location /db/
+2. The web application has three pages: All tasks, New, Done, Add task.
+3. The task list pages display the tasks name, creation time, and completion status.
+4. Clicking on the name of the task opens a page with a full description of the task.
+5. The description page allows you to complete task, update it or delete. 
+6. Data is saved via hibernate.
+7. Bootstrap is used for the view.
+
+![alt text](screenshots/all_tasks.png "All tasks page")
+
+![alt text](screenshots/description.png "Task description")
+
+![alt text](screenshots/add_task.png "New task creation")
