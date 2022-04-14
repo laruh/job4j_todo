@@ -68,12 +68,10 @@ public class ItemStore {
                 .executeUpdate());
     }
 
-    public Object deleteById(int id) {
-        return this.tx(session -> {
-            Item item = new Item();
-            item.setId(id);
-            session.delete(item);
-            return new Object();
-        });
+    public void deleteById(int id) {
+        this.tx(session -> session
+                .createQuery("delete from Item where id = :id")
+                .setParameter("id", id)
+                .executeUpdate());
     }
 }
